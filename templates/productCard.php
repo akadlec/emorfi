@@ -1,55 +1,55 @@
-<div class="ProductCard">
-    <a href="#product" class="ProductCard-link"></a>
+<?php
+$products = [
+    [
+        'title'    => 'Dámská halenka Tom Tailor v bílo-modré barvě se vzorem',
+        'variants' => ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+        'selected' => 'M',
+    ],
+    [
+        'title'    => 'MacBook Pro 15" 2,5 GHz s Retina displejem, 512 GB (2015)',
+        'variants' => ['256 GB', '512 GB', '1 TB', '2 TB'],
+        'selected' => '512 GB',
+    ],
+    [
+        'title'    => 'iPhone 5s',
+        'variants' => ['Space Gray', 'Stříbrná', 'Zlatá'],
+        'selected' => 'Space Gray',
+    ],
+];
+$product = $products[array_rand($products)];
+?>
+<article class="ProductCard">
+    <a href="#product" class="ProductCard-link" aria-label="<?php echo htmlspecialchars($product['title'], ENT_QUOTES); ?>"></a>
     <div class="ProductCard-header">
         <div class="ProductCard-imageWrapper">
             <img src="public/images/product-<?php echo rand(0,1); ?>.png" width="652" height="560" alt="" class="ProductCard-image ProductCard-image--primary" loading="lazy">
         </div>
-        <?php if (rand(0,1)) { ?>
-            <div class="ProductCard-primaryBadges">
-                <div class="Badge Badge--circle">
-                    -10%
-                </div>
+        <div class="ProductCard-tertiaryBadges">
+            <div class="Badge Badge--rectangle" style="--background: #132736">Novinka</div>
+            <div class="Badge Badge--rectangle" style="--background: #00519E">Doprodej</div>
+            <div class="Badge Badge--rectangle" style="--background: #D91242">Sleva -18&nbsp;%</div>
+        </div>
+        <div class="ProductCard-variants" aria-hidden="true">
+            <div class="ProductCard-variantsLabel">Zvolte si variantu:</div>
+            <div class="ProductCard-variantsList">
+                <?php foreach ($product['variants'] as $variant): ?>
+                    <?php $selected = $variant === $product['selected']; ?>
+                    <button type="button" class="ProductCard-variant<?php echo $selected ? ' is-selected' : ''; ?>" tabindex="-1">
+                        <?php echo htmlspecialchars($variant); ?>
+                    </button>
+                <?php endforeach; ?>
             </div>
-        <?php } ?>
-        <?php if (rand(0,1)) { ?>
-            <div class="ProductCard-tertiaryBadges">
-                <div class="Badge Badge--rectangleSide">Pro grafiky</div>
-            </div>
-        <?php } ?>
+        </div>
     </div>
     <div class="ProductCard-body">
-        <div>
-            <?php if (rand(0,1)) { ?>
-            <div class="ProductCard-secondaryBadges">
-                <div class="Badge Badge--rectangle" style="--color: #5ce62e">
-                    štítek test
-                </div>
-            </div>
-            <?php } ?>
-            <h2 class="ProductCard-title">
-                <?php if (rand(0,1)) { ?>
-                    MacBook Pro 15" 2,5 GHz s Retina displejem, 512 GB (2015)
-                <?php } else { ?>
-                    iPhone 5s
-                <?php } ?>
-            </h2>
-        </div>
-        <div class="ProductCard-stock">
-            <?php if (rand(0,1)) { ?>
-            <div class="u-fontMedium u-textColorGreen">Skladem &gt; 5 ks</div>
-            <?php } else { ?>
-                <div class="u-fontMedium u-textColorOrange">Naskladníme do 24 hodin</div>
-            <?php } ?>
-        </div>
+        <h2 class="ProductCard-title">
+            <?php echo htmlspecialchars($product['title']); ?>
+        </h2>
     </div>
     <div class="ProductCard-footer">
-        <div class="ProductCard-footerContent">
-            <div class="ProductCard-priceWrapper">
-                <div class="ProductCard-price"> 76&nbsp;990&nbsp;Kč</div>
-            </div>
-            <div class="ProductCard-quantity">
-                <a href="#basket" class="Btn Btn--secondary Btn--style1 Btn-0--block Btn-xs--block Btn-sm--block ProductCard-btn ">Do košíku</a>
-            </div>
+        <div class="ProductCard-priceWrapper">
+            <span class="ProductCard-price">1&nbsp;199&nbsp;Kč</span>
+            <s class="ProductCard-priceOld">2&nbsp;390&nbsp;Kč</s>
         </div>
     </div>
-</div>
+</article>

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.DS_Store
+desktop.ini
+
+# Lockfiles — keep package-lock.json (npm), ignore pnpm
+pnpm-lock.yaml
